@@ -3,13 +3,68 @@
 #include <conio.h>
 using namespace std;
 
+void MainPuzzle(int array[4][4]);
+void FindRepeatingDigit(int array[4][4]);
+void Upward(int array[4][4]);
+void Downward(int array[4][4]);
+void Leftward(int array[4][4]);
+void Rightward(int array[4][4]);
+bool CheckWin(int array[4][4]);
+void PrintPuzzle(int array[4][4]);
+void Command();
+
+int main() {
+	const int arraySize = 4;
+	int mainBox[arraySize][arraySize], box[arraySize][arraySize];
+	char userInput;
+
+	srand(time(NULL));
+	FindRepeatingDigit(box);
+
+	while(true) {
+		system("cls");
+		MainPuzzle(mainBox);
+		Command();
+		PrintPuzzle(box);
+
+		if (CheckWin(box)) {
+			cout << "\n\n     CONGRATULATIONS!!!\n\tYOU WIN!!!" << "\n\n";
+			break;
+		}
+		cout << "\n\n   Enter a Command"; userInput = _getch();
+		
+		switch (userInput) {
+			case 'W':
+			case 'w':
+				Upward(box);
+				break;
+			case 'S':
+			case 's':
+				Downward(box);
+				break;
+			case 'A':
+			case 'a':
+				Leftward(box);
+				break;
+			case 'D':
+			case 'd':
+				Rightward(box);
+				break;
+			default:
+				cout << "Error! Try it again." << "\n";
+		}
+	}
+}
+
+// Functions
+
 void MainPuzzle(int array[4][4]) {
 	int numeral = 1;
 
 	cout << "\n       Main Puzzle: " << "\n\n";
 	for (int i = 0; i < 4; i++) {
 		cout << (char)197 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)197 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)197
-			 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)197 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)197 << "\n" << (char)179;
+			<< (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)197 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)197 << "\n" << (char)179;
 		for (int j = 0; j < 4; j++) {
 			array[i][j] = numeral++;
 			if (i == 3 && j == 3) cout << "  " << "\t" << (char)179;
@@ -19,7 +74,7 @@ void MainPuzzle(int array[4][4]) {
 		cout << endl;
 	}
 	cout << (char)197 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)197 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)197
-		 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)197 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)197 << "\n";
+		<< (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)197 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)197 << "\n";
 }
 
 void FindRepeatingDigit(int array[4][4]) {
@@ -146,7 +201,7 @@ void PrintPuzzle(int array[4][4]) {
 
 	for (int i = 0; i < 4; i++) {
 		cout << (char)197 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)197 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)197
-			 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)197 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)197 << "\n" << (char)179;
+			<< (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)197 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)197 << "\n" << (char)179;
 		for (int j = 0; j < 4; j++) {
 			if (array[i][j] == 16) cout << "  " << "\t" << (char)179;
 			else cout << array[i][j] << "\t" << (char)179;
@@ -154,7 +209,7 @@ void PrintPuzzle(int array[4][4]) {
 		cout << endl;
 	}
 	cout << (char)197 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)197 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)197
-	     << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)197 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)197 << "\n";
+		<< (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)197 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)196 << (char)197 << "\n";
 }
 
 void Command() {
@@ -164,47 +219,4 @@ void Command() {
 	cout << "A/a - Left." << "\n";
 	cout << "D/d - Right." << "\n";
 	cout << "ESC - Quit." << "\n";
-}
-
-int main() {
-	const int arraySize = 4;
-	int mainBox[arraySize][arraySize], box[arraySize][arraySize];
-	char userInput;
-
-	srand(time(NULL));
-	FindRepeatingDigit(box);
-
-	while(true) {
-		system("cls");
-		MainPuzzle(mainBox);
-		Command();
-		PrintPuzzle(box);
-
-		if (CheckWin(box)) {
-			cout << "\n\n     CONGRATULATIONS!!!\n\tYOU WIN!!!" << "\n\n";
-			break;
-		}
-		cout << "\n\n   Enter a Command"; userInput = _getch();
-		
-		switch (userInput) {
-			case 'W':
-			case 'w':
-				Upward(box);
-				break;
-			case 'S':
-			case 's':
-				Downward(box);
-				break;
-			case 'A':
-			case 'a':
-				Leftward(box);
-				break;
-			case 'D':
-			case 'd':
-				Rightward(box);
-				break;
-			default:
-				cout << "Error! Try it again." << "\n";
-		}
-	}
 }
